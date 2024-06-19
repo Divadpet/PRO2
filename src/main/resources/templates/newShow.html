@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AddShow</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+<div th:include="fragments :: header"></div>
+<form action="#" th:action="@{/show/addShow}" th:object="${show}" method="post">
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" th:field="*{name}" required>
+    </div>
+    <div>
+        <label for="description">Description:</label>
+        <input type="text" id="description" th:field="*{description}" required>
+    </div>
+    <div>
+        <label for="seriesCount">Number of series:</label>
+        <input type="number" id="seriesCount" th:field="*{seriesCount}" required>
+    </div>
+    <div>
+        <label for="episodeCount">Average episode count per series:</label>
+        <input type="number" id="episodeCount" th:field="*{episodeCount}" required>
+    </div>
+    <div>
+        <label for="length">Average episode length(min):</label>
+        <input type="number" id="length" th:field="*{length}" required>
+    </div>
+    <div>
+        <button type="submit">Add Show</button>
+    </div>
+</form>
+</body>
+</html>

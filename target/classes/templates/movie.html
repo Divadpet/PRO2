@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${movie.name}"></title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+<div th:include="fragments :: header"></div>
+<div>
+    <h1>Movie title:</h1>
+            <h1 th:text="${movie.name}"></h1>
+    <h1>Movie description:</h1>
+            <h2 th:text="${movie.description}"></h2>
+</div>
+<span th:if="${userId == movie.userId}">
+<a th:href="@{/movie/edit/{id}(id=${movie.id})}">Edit movie</a>
+<form action="#" th:action="@{/movie/delete/{id}(id=${movie.id})}" th:object="${delete}" method="post">
+    <input type="submit" value="Delete Movie">
+</form>
+</span>
+
+    <span th:if="${comments != null}">
+        <span th:each="comment : ${comments}">
+                <h1>Review title:</h1>
+            <h1 th:text="${comment.name}"></h1>
+                <h1>Review:</h1>
+            <h2 th:text="${comment.description}"></h2>
+
+                <span th:if="${userId == comment.userId}">
+                <a th:href="@{/comment/edit/{id}(id=${comment.id})}">Edit comment</a>
+                <form action="#" th:action="@{/comment/delete/{id}(id=${comment.id})}" th:object="${delete}" method="post">
+                <input type="submit" value="Delete Comment">
+                </form>
+                </span>
+
+
+        </span>
+    </span>
+
+
+<form action="#" th:action="@{/comment/addMovieComment}" th:object="${newComment}" method="post">
+    <h1>Write a review!</h1>
+    <div>
+        <label for="name">Title:</label>
+        <input type="text" id="name" th:field="*{name}" required>
+    </div>
+    <div>
+        <label for="description">Review:</label>
+        <input type="text" id="description" th:field="*{description}" required>
+    </div>
+    <input type="hidden" name="idReference" th:value="${movie.id}">
+    <input type="hidden" name="userId" th:value="${userId}">
+    <div>
+        <button type="submit">Submit review</button>
+    </div>
+</form>
+
+</body>
+</html>

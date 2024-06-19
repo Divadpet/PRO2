@@ -1,0 +1,48 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 a {
+    text-decoration: none;
+    color: white;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+nav div {
+    margin-left: auto; /* Push the div to the right */
+}
+
+nav div h1 {
+    margin: 0 10px; /* Adjust spacing between links */
+}
+
+form {
+    margin: 0; /* Remove default form margin */
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+button:hover {
+    text-decoration: underline;
+}

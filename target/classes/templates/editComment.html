@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>edit comment</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+<div th:include="fragments :: header"></div>
+<form action="#" th:action="@{/comment/editComment}" th:object="${newComment}" method="post">
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" placeholder="title" th:value="${comment.name}" th:field="*{name}" required>
+    </div>
+    <div>
+        <label for="description">Description:</label>
+        <input type="text" id="description" placeholder="comment" th:value="${comment.description}" th:field="*{description}" required>
+        <input type="hidden" name="id" th:value="${comment.id}">
+    </div>
+    <div>
+        <button type="submit">Edit Comment</button>
+    </div>
+</form>
+</body>
+</html>

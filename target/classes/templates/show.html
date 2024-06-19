@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${show.name}"></title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+<div th:include="fragments :: header"></div>
+<h1>TV Show title:</h1>
+<h1 th:text="${show.name}"></h1>
+<h2>Description:</h2>
+<h2 th:text="${show.description}"></h2>
+<h3>Seasons:</h3>
+<h3 th:text="${show.seriesCount}"></h3>
+<h3>Episodes per season:</h3>
+<h3 th:text="${show.episodeCount}"></h3>
+<h3>Average episode length(min):</h3>
+<h3 th:text="${show.length}"></h3>
+
+<span th:if="${userId == show.userId}">
+<a th:href="@{/show/edit/{id}(id=${show.id})}">Edit Show</a>
+<form action="#" th:action="@{/show/delete/{id}(id=${show.id})}" th:object="${delete}" method="post">
+    <input type="submit" value="Delete Show">
+</form>
+</span>
+
+
+<span th:if="${comments != null}">
+        <span th:each="comment : ${comments}">
+                            <h1>Review title:</h1>
+            <h1 th:text="${comment.name}"></h1>
+                            <h2>Review:</h2>
+            <h2 th:text="${comment.description}"></h2>
+            <span th:if="${userId == comment.userId}">
+            <a th:href="@{/comment/edit/{id}(id=${comment.id})}">Edit comment</a>
+            <form action="#" th:action="@{/comment/delete/{id}(id=${comment.id})}" th:object="${delete}" method="post">
+            <input type="submit" value="Delete Comment">
+            </form>
+            </span>
+        </span>
+</span>
+
+
+
+<form action="#" th:action="@{/comment/addShowComment}" th:object="${newComment}" method="post">
+    <h1>Write a review!</h1>
+    <div>
+        <label for="name">Title:</label>
+        <input type="text" id="name" th:field="*{name}" required>
+    </div>
+    <div>
+        <label for="description">Review:</label>
+        <input type="text" id="description" th:field="*{description}" required>
+    </div>
+    <input type="hidden" name="idReference" th:value="${show.id}">
+    <input type="hidden" name="userId" th:value="${userId}">
+    <div>
+        <button type="submit">Submit review</button>
+    </div>
+</form>
+
+</body>
+</html>

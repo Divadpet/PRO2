@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Header</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+    <header th:fragment="header">
+        <h1><a th:href="@{/movie/}">MOVIES</a></h1>
+        <nav>
+            <div sec:authorize="isAuthenticated()">
+            <h1><a th:href="@{/movie/newMovie}">Add movie</a></h1>
+            <h1><a th:href="@{/show/newShow}">Add show</a></h1>
+                <form th:action="@{/user/logout}" method="post">
+                    <button type="submit">Logout</button>
+                </form>
+            </div>
+            <div sec:authorize="!isAuthenticated()">
+            <h1><a th:href="@{/user/login}">Log in</a></h1>
+            <h1><a th:href="@{/user/register}">Register</a></h1>
+            </div>
+        </nav>
+    </header>
+</body>
+</html>

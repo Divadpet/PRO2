@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit movie</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+<div th:include="fragments :: header"></div>
+<form action="#" th:action="@{/movie/editMovie}" th:object="${newMovie}" method="post">
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" placeholder="name" th:field="*{name}" required>
+    </div>
+    <div>
+        <label for="description">Description:</label>
+        <input type="text" id="description" placeholder="description" th:field="*{description}" required>
+        <input type="hidden" name="id" th:value="${movie.id}">
+    </div>
+    <div>
+        <button type="submit">Add Movie</button>
+    </div>
+</form>
+</body>
+</html>

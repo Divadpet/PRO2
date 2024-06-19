@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regiser</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+<div th:include="fragments :: header"></div>
+<h1>Register</h1>
+<form action="#" th:action="@{/user/addUser}" th:object="${user}" method="post">
+    <div>
+        <label for="login">Username:</label>
+        <input type="text" id="login" th:field="*{username}" required>
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" th:field="*{password}" required>
+    </div>
+    <div>
+        <button type="submit">Register</button>
+    </div>
+</form>
+</body>
+</html>
